@@ -1,6 +1,6 @@
-# number_trivia
+# Number Trivia
 
-A new Flutter project.
+An app giving facts about numbers.
 
 ## Getting Started
 
