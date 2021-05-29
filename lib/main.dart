@@ -1,3 +1,5 @@
+//Added Splash Screen
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:number_trivia/pages/home.dart';
