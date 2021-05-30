@@ -24,29 +24,35 @@ class _homeState extends State<home> {
             ),
           ),
           SizedBox(height: 30.0,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                onPressed: (){},
-                child: Text('Random Year'),
-              ),
-              ElevatedButton(
-                onPressed: (){},
-                child: Text('Random Dates'),
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(top: 400.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: (){},
+                  child: Text('Random Year'),
+                ),
+                ElevatedButton(
+                  onPressed: (){},
+                  child: Text('Random Dates'),
+                ),
+              ],
+            ),
           ),
           SizedBox(height: 20.0,),
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              ElevatedButton(
-                onPressed: (){},
-                child: Text(
-                  'RANDOM TRIVIA',
-                  style: TextStyle(
-                    fontSize: 20.0
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 20.0),
+                child: ElevatedButton(
+                  onPressed: (){},
+                  child: Text(
+                    'RANDOM TRIVIA',
+                    style: TextStyle(
+                      fontSize: 20.0
+                    ),
                   ),
                 ),
               ),
