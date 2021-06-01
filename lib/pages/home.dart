@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:number_trivia/pages/settings.dart';
 
 class home extends StatefulWidget {
   @override
@@ -7,7 +8,7 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
-  TextEditingController _textFieldController = TextEditingController();  
+  TextEditingController _textFieldController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     void _showDialogForYear() {
@@ -16,11 +17,11 @@ class _homeState extends State<home> {
           builder: (BuildContext context) {
             return AlertDialog(
               title: Text('Enter any Year'),
-              content: TextField(
+              content: TextFormField(
+                keyboardType: TextInputType.number,
+                autofocus: true,
                 controller: _textFieldController,
-                decoration: InputDecoration(
-                  hintText: "Enter Year"
-                ),
+                decoration: InputDecoration(hintText: "Enter Year"),
               ),
               actions: [
                 ElevatedButton(
@@ -40,12 +41,15 @@ class _homeState extends State<home> {
           builder: (BuildContext context) {
             return AlertDialog(
               title: Text('Enter any date'),
-              content: TextField(
-                controller: _textFieldController,
-                decoration: InputDecoration(
-                  hintText: "MM/DD"
+              content: TextFormField(
+                keyboardType: TextInputType.numberWithOptions(
+                  decimal: false,
+                  signed: false,
                 ),
-              ), 
+                autofocus: true,
+                controller: _textFieldController,
+                decoration: InputDecoration(hintText: "MM/DD"),
+              ),
               actions: [
                 ElevatedButton(
                   onPressed: () {
@@ -64,12 +68,12 @@ class _homeState extends State<home> {
           builder: (BuildContext context) {
             return AlertDialog(
               title: Text('Enter your lucky number'),
-              content: TextField(
+              content: TextFormField(
+                keyboardType: TextInputType.number,
                 controller: _textFieldController,
-                decoration: InputDecoration(
-                  hintText: "Enter any number"
-                ),
-              ), 
+                autofocus: true,
+                decoration: InputDecoration(hintText: "Enter any number"),
+              ),
               actions: [
                 ElevatedButton(
                   onPressed: () {
@@ -85,24 +89,38 @@ class _homeState extends State<home> {
     return Scaffold(
       backgroundColor: Colors.black54,
       body: SingleChildScrollView(
-              child: Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: 80.0,
             ),
-            Text(
-              'Number Trivia',
-              style: GoogleFonts.carroisGothic(
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.pinkAccent[400]),
-            ),
-            SizedBox(
-              height: 30.0,
+            Row(
+              children: [
+                Text(
+                  'NumberTrivia',
+                  style: GoogleFonts.carroisGothic(
+                      fontSize: 50.0,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.pinkAccent[400]),
+                ),
+                SizedBox(
+                  width: 80.0,
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.settings_outlined,
+                    size: 30.0,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    
+                  },
+                ),
+              ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 350.0),
+              padding: const EdgeInsets.only(top: 360.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
