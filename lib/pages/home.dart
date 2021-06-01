@@ -9,7 +9,45 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
-    void _showDialog() {
+    void _showDialogForYear() {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Enter any Year'),
+              content: Text('Body of Year'),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK"),
+                )
+              ],
+            );
+          });
+    }
+
+    void _showDialogForDate() {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Enter any date'),
+              content: Text('Body of date'),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK"),
+                )
+              ],
+            );
+          });
+    }
+
+    void _showDialogForTrivia() {
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -52,9 +90,11 @@ class _homeState extends State<home> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    print('YEAR');
+                  },
                   onLongPress: () {
-                    return _showDialog();
+                    return _showDialogForYear();
                   },
                   child: Text('Random Year'),
                 ),
@@ -63,7 +103,7 @@ class _homeState extends State<home> {
                     print('DATE');
                   },
                   onLongPress: () {
-                    print('Dialog Box 1');
+                    return _showDialogForDate();
                   },
                   child: Text('Random Dates'),
                 ),
@@ -83,7 +123,7 @@ class _homeState extends State<home> {
                     print('TRIVIA');
                   },
                   onLongPress: () {
-                    print("Dialog box 3");
+                    return _showDialogForTrivia();
                   },
                   child: Text(
                     'RANDOM TRIVIA',
@@ -98,3 +138,4 @@ class _homeState extends State<home> {
     );
   }
 }
+
