@@ -7,6 +7,7 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
+  TextEditingController _textFieldController = TextEditingController();  
   @override
   Widget build(BuildContext context) {
     void _showDialogForYear() {
@@ -15,7 +16,12 @@ class _homeState extends State<home> {
           builder: (BuildContext context) {
             return AlertDialog(
               title: Text('Enter any Year'),
-              content: Text('Body of Year'),
+              content: TextField(
+                controller: _textFieldController,
+                decoration: InputDecoration(
+                  hintText: "Enter Year"
+                ),
+              ),
               actions: [
                 ElevatedButton(
                   onPressed: () {
@@ -34,7 +40,12 @@ class _homeState extends State<home> {
           builder: (BuildContext context) {
             return AlertDialog(
               title: Text('Enter any date'),
-              content: Text('Body of date'),
+              content: TextField(
+                controller: _textFieldController,
+                decoration: InputDecoration(
+                  hintText: "MM/DD"
+                ),
+              ), 
               actions: [
                 ElevatedButton(
                   onPressed: () {
@@ -53,7 +64,12 @@ class _homeState extends State<home> {
           builder: (BuildContext context) {
             return AlertDialog(
               title: Text('Enter your lucky number'),
-              content: Text('ALert dialog body'),
+              content: TextField(
+                controller: _textFieldController,
+                decoration: InputDecoration(
+                  hintText: "Enter any number"
+                ),
+              ), 
               actions: [
                 ElevatedButton(
                   onPressed: () {
@@ -68,74 +84,75 @@ class _homeState extends State<home> {
 
     return Scaffold(
       backgroundColor: Colors.black54,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 80.0,
-          ),
-          Text(
-            'Number Trivia',
-            style: GoogleFonts.carroisGothic(
-                fontSize: 40.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.pinkAccent[400]),
-          ),
-          SizedBox(
-            height: 30.0,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 350.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    print('YEAR');
-                  },
-                  onLongPress: () {
-                    return _showDialogForYear();
-                  },
-                  child: Text('Random Year'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    print('DATE');
-                  },
-                  onLongPress: () {
-                    return _showDialogForDate();
-                  },
-                  child: Text('Random Dates'),
-                ),
-              ],
+      body: SingleChildScrollView(
+              child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 80.0,
             ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 20.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    print('TRIVIA');
-                  },
-                  onLongPress: () {
-                    return _showDialogForTrivia();
-                  },
-                  child: Text(
-                    'RANDOM TRIVIA',
-                    style: TextStyle(fontSize: 20.0),
+            Text(
+              'Number Trivia',
+              style: GoogleFonts.carroisGothic(
+                  fontSize: 40.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.pinkAccent[400]),
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 350.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      print('YEAR');
+                    },
+                    onLongPress: () {
+                      return _showDialogForYear();
+                    },
+                    child: Text('Random Year'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      print('DATE');
+                    },
+                    onLongPress: () {
+                      return _showDialogForDate();
+                    },
+                    child: Text('Random Dates'),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 20.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      print('TRIVIA');
+                    },
+                    onLongPress: () {
+                      return _showDialogForTrivia();
+                    },
+                    child: Text(
+                      'RANDOM TRIVIA',
+                      style: TextStyle(fontSize: 20.0),
+                    ),
                   ),
                 ),
-              ),
-            ],
-          )
-        ],
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
 }
-
