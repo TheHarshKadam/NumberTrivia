@@ -1,6 +1,6 @@
 # Number Trivia
 
-An app giving facts about numbers.
+An app for intresting facts about numbers.
 
 ## Getting Started
 
