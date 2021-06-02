@@ -8,8 +8,37 @@ class settings extends StatefulWidget {
 class _settingsState extends State<settings> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('SETTINGS MENU'),
+    return Scaffold(
+      backgroundColor: Colors.black54,
+      body: Column(
+        children: [
+          SizedBox(
+            height: 80.0,
+          ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  size: 20.0,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                'Settings',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50.0,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
