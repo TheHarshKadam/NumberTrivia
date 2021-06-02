@@ -29,6 +29,10 @@ class _homeState extends State<home> {
                     Navigator.of(context).pop();
                   },
                   child: Text("OK"),
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.pinkAccent),
+                  ),
                 )
               ],
             );
@@ -56,6 +60,10 @@ class _homeState extends State<home> {
                     Navigator.of(context).pop();
                   },
                   child: Text("OK"),
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.pinkAccent),
+                  ),
                 )
               ],
             );
@@ -80,6 +88,10 @@ class _homeState extends State<home> {
                     Navigator.of(context).pop();
                   },
                   child: Text("OK"),
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.pinkAccent),
+                  ),
                 )
               ],
             );
@@ -93,19 +105,19 @@ class _homeState extends State<home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 80.0,
+              height: 60.0,
             ),
             Row(
               children: [
                 Text(
                   'NumberTrivia',
-                  style: GoogleFonts.carroisGothic(
-                      fontSize: 50.0,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.pinkAccent[400]),
+                  style: TextStyle(
+                      fontSize: 40.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
                 SizedBox(
-                  width: 80.0,
+                  width: 105.0,
                 ),
                 IconButton(
                   icon: Icon(
@@ -114,13 +126,17 @@ class _homeState extends State<home> {
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => settings(),
+                        ));
                   },
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 360.0),
+              padding: const EdgeInsets.only(top: 400.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -132,6 +148,10 @@ class _homeState extends State<home> {
                       return _showDialogForYear();
                     },
                     child: Text('Random Year'),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.pinkAccent),
+                    ),
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -141,6 +161,10 @@ class _homeState extends State<home> {
                       return _showDialogForDate();
                     },
                     child: Text('Random Dates'),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.pinkAccent),
+                    ),
                   ),
                 ],
               ),
@@ -163,6 +187,10 @@ class _homeState extends State<home> {
                     child: Text(
                       'RANDOM TRIVIA',
                       style: TextStyle(fontSize: 20.0),
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.pinkAccent),
                     ),
                   ),
                 ),
