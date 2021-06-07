@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:number_trivia/pages/settings.dart';
 import 'dart:convert';
-import 'package:http/http.dart';
+import 'package:http/http.dart'as http;
 
 class home extends StatefulWidget {
   @override
@@ -11,11 +11,12 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   TextEditingController _textFieldController = TextEditingController();
   String fact;
-  Future fetchData() async {
-    Response response;
-    response = await get(Uri.https('numbersapi.com', 'random/trivia'));
+  void fetchData() async {
+    http.Response response;
+    response = await http.get(Uri.http('numbersapi.com', 'random/trivia'));
     if (response.statusCode == 200) {
       print(response.statusCode);
+      print(response.body);
       setState(() {
         fact = response.body;
       });
