@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:number_trivia/pages/settings.dart';
+import 'package:number_trivia/services/api_code.dart';
+import 'dart:convert';
+import 'package:http/http.dart';
 
 class home extends StatefulWidget {
   @override
@@ -9,6 +12,24 @@ class home extends StatefulWidget {
 
 class _homeState extends State<home> {
   TextEditingController _textFieldController = TextEditingController();
+  String fact;
+  Future fetchData() async {
+    Response response;
+    response = await get(Uri.https('numbersapi.com', 'random/trivia'));
+    if (response.statusCode == 200) {
+      print(response.statusCode);
+      setState(() {
+        fact = response.body;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    fetchData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     void _showDialogForYear() {
@@ -16,12 +37,17 @@ class _homeState extends State<home> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
               title: Text('Enter any Year'),
               content: TextFormField(
                 keyboardType: TextInputType.number,
                 autofocus: true,
+                cursorColor: Colors.purple[400],
                 controller: _textFieldController,
-                decoration: InputDecoration(hintText: "Enter Year"),
+                decoration: InputDecoration(
+                  hintText: "Enter Year",
+                ),
               ),
               actions: [
                 ElevatedButton(
@@ -31,7 +57,7 @@ class _homeState extends State<home> {
                   child: Text("OK"),
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.pinkAccent),
+                        MaterialStateProperty.all<Color>(Colors.purple[400]),
                   ),
                 )
               ],
@@ -44,12 +70,11 @@ class _homeState extends State<home> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
               title: Text('Enter any date'),
               content: TextFormField(
-                keyboardType: TextInputType.numberWithOptions(
-                  decimal: false,
-                  signed: false,
-                ),
+                cursorColor: Colors.purple[400],
                 autofocus: true,
                 controller: _textFieldController,
                 decoration: InputDecoration(hintText: "MM/DD"),
@@ -62,7 +87,7 @@ class _homeState extends State<home> {
                   child: Text("OK"),
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.pinkAccent),
+                        MaterialStateProperty.all<Color>(Colors.purple[400]),
                   ),
                 )
               ],
@@ -75,8 +100,11 @@ class _homeState extends State<home> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
               title: Text('Enter your lucky number'),
               content: TextFormField(
+                cursorColor: Colors.purple[400],
                 keyboardType: TextInputType.number,
                 controller: _textFieldController,
                 autofocus: true,
@@ -90,7 +118,7 @@ class _homeState extends State<home> {
                   child: Text("OK"),
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.pinkAccent),
+                        MaterialStateProperty.all<Color>(Colors.purple[400]),
                   ),
                 )
               ],
@@ -135,6 +163,13 @@ class _homeState extends State<home> {
                 ),
               ],
             ),
+            Text(
+              fact.toString(),
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 400.0),
               child: Row(
@@ -150,7 +185,7 @@ class _homeState extends State<home> {
                     child: Text('Random Year'),
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.pinkAccent),
+                          MaterialStateProperty.all<Color>(Colors.purple[400]),
                     ),
                   ),
                   ElevatedButton(
@@ -163,7 +198,7 @@ class _homeState extends State<home> {
                     child: Text('Random Dates'),
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.pinkAccent),
+                          MaterialStateProperty.all<Color>(Colors.purple[400]),
                     ),
                   ),
                 ],
@@ -179,7 +214,7 @@ class _homeState extends State<home> {
                   padding: const EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 20.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      print('TRIVIA');
+                      print(fetchData());
                     },
                     onLongPress: () {
                       return _showDialogForTrivia();
@@ -190,7 +225,7 @@ class _homeState extends State<home> {
                     ),
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.pinkAccent),
+                          MaterialStateProperty.all<Color>(Colors.purple[400]),
                     ),
                   ),
                 ),
