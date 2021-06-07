@@ -214,7 +214,7 @@ class _homeState extends State<home> {
                   padding: const EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 20.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      print(fetchData());
+                      fetchData();
                     },
                     onLongPress: () {
                       return _showDialogForTrivia();
