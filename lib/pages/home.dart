@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:number_trivia/pages/settings.dart';
-import 'package:number_trivia/services/api_code.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
 
