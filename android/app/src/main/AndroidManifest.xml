@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.number_trivia">
+    <uses-permission android:name="android.permission.INTERNET" />
+    
    <application
+        android:usesCleartextTraffic="true"
         android:label="number_trivia"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -37,5 +40,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <uses-library 
+            android:name="org.apache.http.legacy"
+            android:required="false" /> 
     </application>
 </manifest>
