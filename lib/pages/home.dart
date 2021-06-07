@@ -166,7 +166,7 @@ class _homeState extends State<home> {
               fact.toString(),
               style: TextStyle(
                 fontSize: 20.0,
-                color: Colors.white,
+                color: Colors.purple[400],
               ),
             ),
             Padding(
