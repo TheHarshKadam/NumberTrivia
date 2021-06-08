@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:number_trivia/pages/settings.dart';
 import 'dart:convert';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 
 class home extends StatefulWidget {
   @override
@@ -10,22 +10,50 @@ class home extends StatefulWidget {
 
 class _homeState extends State<home> {
   TextEditingController _textFieldController = TextEditingController();
-  String fact;
-  void fetchData() async {
+  String factTrivia;
+  String factYear;
+  String factDate;
+  void fetchDataForTrivia() async {
     http.Response response;
     response = await http.get(Uri.http('numbersapi.com', 'random/trivia'));
     if (response.statusCode == 200) {
       print(response.statusCode);
       print(response.body);
       setState(() {
-        fact = response.body;
+        factTrivia = response.body;
+      });
+    }
+  }
+
+  void fetchDataForYear() async {
+    http.Response response;
+    response = await http.get(Uri.http('numbersapi.com', 'random/year'));
+    if (response.statusCode == 200) {
+      print(response.statusCode);
+      print(response.body);
+      setState(() {
+        factYear = response.body;
+      });
+    }
+  }
+
+  void fetchDataForDate() async {
+    http.Response response;
+    response = await http.get(Uri.http('numbersapi.com', 'random/date'));
+    if (response.statusCode == 200) {
+      print(response.statusCode);
+      print(response.body);
+      setState(() {
+        factDate = response.body;
       });
     }
   }
 
   @override
   void initState() {
-    fetchData();
+    fetchDataForTrivia();
+    fetchDataForYear();
+    fetchDataForDate();
     super.initState();
   }
 
@@ -127,111 +155,122 @@ class _homeState extends State<home> {
 
     return Scaffold(
       backgroundColor: Colors.black54,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 60.0,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 60.0,
+          ),
+          Row(
+            children: [
+              Text(
+                'NumberTrivia',
+                style: TextStyle(
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              SizedBox(
+                width: 105.0,
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.settings_outlined,
+                  size: 30.0,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => settings(),
+                      ));
+                },
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 30.0,
+          ),
+          Card(
+            elevation: 20.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0),
             ),
-            Row(
+            color: Colors.grey[900],
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                factYear.toString(),
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.purple[400],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 300.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  'NumberTrivia',
-                  style: TextStyle(
-                      fontSize: 40.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                SizedBox(
-                  width: 105.0,
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.settings_outlined,
-                    size: 30.0,
-                    color: Colors.white,
-                  ),
+                ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => settings(),
-                        ));
+                    fetchDataForYear();
                   },
+                  onLongPress: () {
+                    return _showDialogForYear();
+                  },
+                  child: Text('Random Year'),
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.purple[400]),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    fetchDataForDate();
+                  },
+                  onLongPress: () {
+                    return _showDialogForDate();
+                  },
+                  child: Text('Random Dates'),
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.purple[400]),
+                  ),
                 ),
               ],
             ),
-            Text(
-              fact.toString(),
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.purple[400],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 400.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      print('YEAR');
-                    },
-                    onLongPress: () {
-                      return _showDialogForYear();
-                    },
-                    child: Text('Random Year'),
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.purple[400]),
-                    ),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 20.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    fetchDataForTrivia();
+                  },
+                  onLongPress: () {
+                    return _showDialogForTrivia();
+                  },
+                  child: Text(
+                    'RANDOM TRIVIA',
+                    style: TextStyle(fontSize: 20.0),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      print('DATE');
-                    },
-                    onLongPress: () {
-                      return _showDialogForDate();
-                    },
-                    child: Text('Random Dates'),
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.purple[400]),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20.0, 0.0, 10.0, 20.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      fetchData();
-                    },
-                    onLongPress: () {
-                      return _showDialogForTrivia();
-                    },
-                    child: Text(
-                      'RANDOM TRIVIA',
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.purple[400]),
-                    ),
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.purple[400]),
                   ),
                 ),
-              ],
-            )
-          ],
-        ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
