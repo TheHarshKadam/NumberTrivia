@@ -10,9 +10,9 @@ class home extends StatefulWidget {
 
 class _homeState extends State<home> {
   TextEditingController _textFieldController = TextEditingController();
-  String factTrivia;
-  String factYear;
-  String factDate;
+
+  String fact;
+
   void fetchDataForTrivia() async {
     http.Response response;
     response = await http.get(Uri.http('numbersapi.com', 'random/trivia'));
@@ -20,7 +20,7 @@ class _homeState extends State<home> {
       print(response.statusCode);
       print(response.body);
       setState(() {
-        factTrivia = response.body;
+        fact = response.body;
       });
     }
   }
@@ -32,7 +32,7 @@ class _homeState extends State<home> {
       print(response.statusCode);
       print(response.body);
       setState(() {
-        factYear = response.body;
+        fact = response.body;
       });
     }
   }
@@ -44,7 +44,7 @@ class _homeState extends State<home> {
       print(response.statusCode);
       print(response.body);
       setState(() {
-        factDate = response.body;
+        fact = response.body;
       });
     }
   }
@@ -200,13 +200,11 @@ class _homeState extends State<home> {
             color: Colors.grey[900],
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                factYear.toString(),
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.purple[400],
-                ),
-              ),
+              child: Text(fact.toString(),
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.purple[400],
+                  )),
             ),
           ),
           Padding(
