@@ -15,10 +15,18 @@ class ThemeProvider extends ChangeNotifier {
 class MyTheme {
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.black54,
+    //primaryColor: Colors.black,
+    cardTheme: CardTheme(
+      color: Colors.black12,
+    ),
     colorScheme: ColorScheme.dark(),
   );
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
+    primaryColor: Colors.white,
     colorScheme: ColorScheme.light(),
+    cardTheme: CardTheme(
+      color: Colors.white70,
+    ),
   );
 }
