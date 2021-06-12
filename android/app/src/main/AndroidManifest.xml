@@ -4,7 +4,7 @@
     
    <application
         android:usesCleartextTraffic="true"
-        android:label="number_trivia"
+        android:label="Nmberz"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
