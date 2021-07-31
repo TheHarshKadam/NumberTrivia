@@ -26,6 +26,9 @@ dependencies:
   http: ^0.13.3
   provider: ^5.0.0
   url_launcher: ^6.0.6
+  responsive_framework: ^0.1.4
+  sizer: ^2.0.13
+
   
 
   
@@ -38,7 +41,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.8.0"
+  flutter_launcher_icons: "any"
   
 flutter_icons:
   image_path: "icon/facts.png"
