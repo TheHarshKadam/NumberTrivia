@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:number_trivia/pages/home.dart';
 import 'package:number_trivia/provider/darkMode.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import 'package:sizer/sizer.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -10,14 +12,30 @@ void main() {
       return ThemeProvider();
     },
     // ignore: missing_return
-    builder: (context,_) {
+    builder: (context, _) {
       final themeProvider = Provider.of<ThemeProvider>(context);
-        return MaterialApp(
-        themeMode: themeProvider.themeMode,
-        theme: MyTheme.lightTheme,
-        darkTheme: MyTheme.darkTheme,
-        debugShowCheckedModeBanner: false,
-        home: splash_screen(),
+      return Sizer(
+        builder: (context, orientation, deviceType) {
+          return MaterialApp(
+            builder: (context, widget) => ResponsiveWrapper.builder(
+                BouncingScrollWrapper.builder(context, widget),
+                maxWidth: 1200,
+                minWidth: 450,
+                defaultScale: true,
+                breakpoints: [
+                  ResponsiveBreakpoint.resize(450, name: MOBILE),
+                  ResponsiveBreakpoint.autoScale(800, name: TABLET),
+                  ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+                  ResponsiveBreakpoint.autoScale(1200, name: DESKTOP),
+                  ResponsiveBreakpoint.autoScale(2460, name: "4K"),
+                ]),
+            themeMode: themeProvider.themeMode,
+            theme: MyTheme.lightTheme,
+            darkTheme: MyTheme.darkTheme,
+            debugShowCheckedModeBanner: false,
+            home: splash_screen(),
+          );
+        },
       );
     },
   ));
