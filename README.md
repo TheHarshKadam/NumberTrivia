@@ -1,6 +1,6 @@
 # Number Trivia
 
-An app for intresting facts about numbers.
+An app for intresting facts about numbers with Dark/Light mode enabled.
 
 <img src = "https://user-images.githubusercontent.com/77354987/121767060-a8e21b00-cb73-11eb-901b-d64c9946f105.gif" width="390" height="730">
 
