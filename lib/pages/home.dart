@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:number_trivia/pages/settings.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:sizer/sizer.dart';
 
 class home extends StatefulWidget {
   @override
@@ -222,6 +223,8 @@ class _homeState extends State<home> {
           });
     }
 
+    var size = MediaQuery.of(context).size;
+    print(size.width);
     return Scaffold(
       //backgroundColor: Colors.black54,
       body: Column(
@@ -237,12 +240,13 @@ class _homeState extends State<home> {
                     ),
                     Row(
                       children: [
+                        SafeArea(child: SizedBox(height: 30.0.sp)),
                         Text(
                           'NumberTrivia',
                           style: TextStyle(
-                              fontSize: 40.0,
-                              fontWeight: FontWeight.bold,
-                              //color: Colors.white
+                            fontSize: 36.0.sp,
+                            fontWeight: FontWeight.bold,
+                            //color: Colors.white
                           ),
                         ),
                         SizedBox(
@@ -251,7 +255,7 @@ class _homeState extends State<home> {
                         IconButton(
                           icon: Icon(
                             Icons.settings_outlined,
-                            size: 30.0,
+                            size: 30.0.sp,
                             //color: Colors.white,
                           ),
                           onPressed: () {
@@ -275,10 +279,10 @@ class _homeState extends State<home> {
                       ),
                       //color: Colors.grey[900],
                       child: Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(15.0),
                         child: Text(fact.toString(),
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: 18.0.sp,
                               color: Colors.purple[400],
                             )),
                       ),
@@ -301,14 +305,18 @@ class _homeState extends State<home> {
                             onLongPress: () {
                               return _showDialogForYear();
                             },
-                            child: Text('Random Year'),
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.purple[400]),
-                              foregroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.white,
-                              )
+                            child: Text(
+                              'Random Year',
+                              style: TextStyle(fontSize: 14.0.sp),
                             ),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.purple[400]),
+                                foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Colors.white,
+                                )),
                           ),
                           ElevatedButton(
                             onPressed: () {
@@ -317,14 +325,18 @@ class _homeState extends State<home> {
                             onLongPress: () {
                               return _showDialogForDate();
                             },
-                            child: Text('Random Dates'),
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.purple[400]),
-                              foregroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.white,
-                              )
+                            child: Text(
+                              'Random Dates',
+                              style: TextStyle(fontSize: 14.0.sp),
                             ),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.purple[400]),
+                                foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Colors.white,
+                                )),
                           ),
                         ],
                       ),
@@ -345,18 +357,21 @@ class _homeState extends State<home> {
                               onLongPress: () {
                                 return _showDialogForTrivia();
                               },
-                              child: Text(
-                                'RANDOM TRIVIA',
-                                style: TextStyle(fontSize: 20.0),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'RANDOM TRIVIA',
+                                  style: TextStyle(fontSize: 18.0.sp),
+                                ),
                               ),
                               style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.purple[400]),
-                                foregroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.white,
-                                 )
-                              ),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.purple[400]),
+                                  foregroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                    Colors.white,
+                                  )),
                             ),
                           ),
                         ],
