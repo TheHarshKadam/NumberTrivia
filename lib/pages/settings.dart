@@ -4,6 +4,7 @@ import 'package:number_trivia/provider/darkMode.dart';
 import 'package:number_trivia/widget/toggle_button.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:sizer/sizer.dart';
 
 class settings extends StatefulWidget {
   @override
@@ -58,7 +59,7 @@ class _settingsState extends State<settings> {
                 style: TextStyle(
                   //color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 50.0,
+                  fontSize: 40.0.sp,
                 ),
               ),
             ],
@@ -74,9 +75,11 @@ class _settingsState extends State<settings> {
               child: ListTile(
                 title: Text(
                   'Theme',
+                  style: TextStyle(fontSize: 19.0.sp),
                 ),
                 subtitle: Text(
                   '$text',
+                  style: TextStyle(fontSize: 14.0.sp),
                 ),
                 trailing: ChangeThemeButton(),
               ),
@@ -93,9 +96,13 @@ class _settingsState extends State<settings> {
               child: ListTile(
                 title: Text(
                   'Help Text',
+                  style: TextStyle(
+                    fontSize: 18.0.sp,
+                  ),
                 ),
                 subtitle: Text(
                   'Long press on any button and enter your lucky number to see the fact behind that number',
+                  style: TextStyle(fontSize: 13.0.sp),
                 ),
               ),
             ),
@@ -111,9 +118,18 @@ class _settingsState extends State<settings> {
                 onLongPress: () {
                   return _launchAPI();
                 },
-                title: Text('Know More About Numbers?'),
+                title: Text(
+                  'Know More About Numbers?',
+                  style: TextStyle(
+                    fontSize: 18.0.sp,
+                  ),
+                ),
                 subtitle: Text(
-                    'Contribute your number, year, date facts to API. Just tap and hold this.'),
+                  'Contribute your number, year, date facts to API. Just tap and hold this.',
+                  style: TextStyle(
+                    fontSize: 13.0.sp,
+                  ),
+                ),
               ),
             ),
           ),
@@ -128,9 +144,7 @@ class _settingsState extends State<settings> {
                 onTap: () {
                   _launchGit();
                 },
-                title: Text(
-                  'Developed By - TheHarshKadam'
-                ),
+                title: Text('Developed By - TheHarshKadam'),
               ),
             ),
           )
